@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>💕 Our Love Story</title>
+  <link rel="stylesheet" href="style.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet"/>
+</head>
+<body>
+
+<!-- ========== FLOATING DECO LAYER ========== -->
+<div class="deco-layer" id="deco-layer">
+  <img src="assets/deco_mymelody.gif"   class="deco deco-tl" alt="">
+  <img src="assets/deco_kuromi.gif"     class="deco deco-tr" alt="">
+  <img src="assets/deco_ghost.gif"      class="deco deco-bl" alt="">
+  <img src="assets/deco_bear.gif"       class="deco deco-br" alt="">
+  <img src="assets/deco_hellokitty.gif" class="deco deco-mid-l" alt="">
+  <img src="assets/deco_stitch.gif"     class="deco deco-mid-r" alt="">
+</div>
+
+<!-- ==================== LOCK SCREEN ==================== -->
+<div id="lock-screen" class="screen">
+  <div class="lock-bg"></div>
+  <div class="ambient-hearts" id="ambient-hearts"></div>
+  <div class="lock-container">
+    <div class="lock-kaomoji">(ᵕ—ᴗ—) ♡</div>
+    <div class="lock-icon">🔒</div>
+    <div class="hidden-heart" data-heart="1"></div>
+    <h1 class="lock-title">Our Love Story</h1>
+    <p class="lock-subtitle">Enter the anniversary date to continue</p>
+    <p class="lock-hint">ʕ•ᴥ•ʔ  DD/MM/YYYY  ʕ•ᴥ•ʔ</p>
+    <div class="lock-input-group">
+      <input type="text" id="date-input" placeholder="DD/MM/YYYY" maxlength="10"/>
+      <button id="unlock-btn" class="pixel-btn">ENTER ▶</button>
+    </div>
+    <p id="lock-error" class="lock-error">(╥_╥) That's not right... try again!</p>
+    <img id="lock-sprite" src="assets/neutral1.png" alt="character" class="lock-sprite"/>
+    <div class="lock-kaomoji-row">
+      <img src="assets/deco_ghost.gif"  class="lock-deco-side" alt="">
+      <p class="lock-kaomoji lock-kaomoji-bot">✦ (づ ᴗ _ᴗ)づ ♡ ✦</p>
+      <img src="assets/deco_bear.gif"   class="lock-deco-side" alt="">
+    </div>
+  </div>
+</div>
+
+<!-- ==================== VN SCREEN ==================== -->
+<div id="vn-screen" class="screen" style="opacity:0;pointer-events:none;z-index:30;">
+  <!-- Scene background -->
+  <div class="vn-bg" id="vn-bg">
+    <div class="vn-bg-img-wrap">
+      <img id="vn-bg-img" src="" alt="" class="vn-bg-img"/>
+      <div class="vn-bg-overlay" id="vn-bg-overlay"></div>
+    </div>
+  </div>
+
+  <!-- Falling petals layer -->
+  <div id="vn-petals" class="vn-petals"></div>
+
+  <!-- Chapter title card -->
+  <div id="vn-chapter-card" class="vn-chapter-card hidden">
+    <div class="vn-chapter-num" id="vn-chapter-num">Chapter 1</div>
+    <div class="vn-chapter-title" id="vn-chapter-title">How We Met</div>
+    <div class="vn-chapter-kaomoji" id="vn-chapter-kaomoji">(ᵕ◡ᵕ)♡</div>
+  </div>
+
+  <!-- Character sprites -->
+  <div class="vn-characters" id="vn-characters">
+    <img id="vn-sprite-left"  src="" alt="" class="vn-sprite vn-sprite-left  hidden"/>
+    <img id="vn-sprite-right" src="" alt="" class="vn-sprite vn-sprite-right hidden"/>
+  </div>
+
+  <!-- Textbox -->
+  <div class="vn-textbox" id="vn-textbox">
+    <div class="vn-name-tag" id="vn-name-tag">✨ (ᵕ◡ᵕ)♡</div>
+    <div class="vn-text" id="vn-text"></div>
+    <div class="vn-next-hint" id="vn-next-hint">▼ click to continue</div>
+  </div>
+
+  <!-- Location label -->
+  <div id="vn-location-label" class="vn-location-label hidden"></div>
+
+  <!-- Choice box -->
+  <div id="vn-choice-box" class="vn-choice-box hidden"></div>
+
+  <!-- Skip button -->
+  <button id="vn-skip-btn" class="vn-skip-btn pixel-btn">SKIP ▶▶</button>
+</div>
+
+<!-- ==================== VN TITLE SCREEN ==================== -->
+<div id="vn-title-screen" class="vn-title-screen hidden">
+  <div class="vn-title-bg"></div>
+  <div class="vn-title-content">
+    <div class="vn-title-deco-row">
+      <img src="assets/deco_mymelody.gif" class="vn-title-deco-gif" alt="">
+      <img src="assets/deco_kuromi.gif"   class="vn-title-deco-gif" alt="">
+    </div>
+    <div class="vn-title-kaomoji">(ᵕ◡ᵕ)♡</div>
+    <h1 class="vn-title-main">Our Love Story</h1>
+    <p class="vn-title-sub">a visual novel</p>
+    <div class="vn-title-divider">— ♥ —</div>
+    <p class="vn-title-names">Anas  &amp;  Pranita</p>
+    <p class="vn-title-prompt">✦ click anywhere to begin ✦</p>
+    <div class="vn-title-deco-row">
+      <img src="assets/deco_ghost.gif" class="vn-title-deco-gif" alt="">
+      <img src="assets/deco_bear.gif"  class="vn-title-deco-gif" alt="">
+    </div>
+  </div>
+</div>
+
+<!-- ==================== GAME SCREEN ==================== -->
+<div id="game-screen" class="screen">
+  <div class="game-bg">
+    <img src="assets/background.gif" alt="bg" class="bg-image"/>
+    <div class="ground-overlay"></div>
+  </div>
+  <div id="particles" class="particles"></div>
+  <div class="hidden-heart" data-heart="2"></div>
+
+  <div id="reward-area" class="reward-area hidden">
+    <div class="reward-spotlight"></div>
+    <img id="reward-img" src="" alt="reward" class="reward-img"/>
+    <p id="reward-text" class="reward-text"></p>
+    <div class="hidden-heart" data-heart="3"></div>
+  </div>
+
+  <div class="character-area">
+    <img id="game-sprite" src="assets/neutral1.png" alt="character" class="game-sprite"/>
+  </div>
+  <div class="dialogue-box">
+    <div class="dialogue-name-tag">✨ (ᵕ◡ᵕ)♡</div>
+    <div class="dialogue-text" id="dialogue-text"></div>
+    <button class="next-btn pixel-btn hidden" id="next-btn">NEXT ▶</button>
+  </div>
+  <div class="choices" id="choices"></div>
+  <div id="celebration" class="celebration hidden"></div>
+</div>
+
+<!-- ==================== ENDING SCREEN ==================== -->
+<div id="ending-screen" class="screen">
+  <div class="ending-bg">
+    <video class="ending-video" autoplay muted loop playsinline>
+      <source src="assets/ending_bg.mp4" type="video/mp4"/>
+    </video>
+    <div class="ending-video-overlay"></div>
+  </div>
+  <div id="float-hearts" class="float-hearts"></div>
+  <div class="ending-content">
+
+    <div class="ending-heart">
+      <img src="assets/heart.gif" alt="heart" class="big-heart"/>
+    </div>
+    <h1 class="ending-title">Forever &amp; Always</h1>
+    <p class="ending-kaomoji">(˘ ³˘)♥ · · · ♥(˘ ³˘)</p>
+    <p class="ending-message" id="ending-message"></p>
+    <div class="ending-sparkles" id="ending-sparkles"></div>
+
+    <!-- Gallery -->
+    <div id="wedding-photo" class="gallery-wrap hidden">
+
+      <div class="gallery-deco-bar">
+        <img src="assets/deco_mymelody.gif" class="gallery-deco-gif" alt="">
+        <span class="gallery-label">✦ Our Story ✦</span>
+        <div class="hidden-heart" data-heart="4"></div>
+        <img src="assets/deco_kuromi.gif"   class="gallery-deco-gif" alt="">
+      </div>
+
+      <div class="gallery-row gallery-row-hero">
+        <div class="photo-card photo-card-hero">
+          <img src="assets/scene_wedding3.png" alt="The Kiss" class="gallery-img"/>
+          <p class="photo-label">💍 The Kiss</p>
+        </div>
+      </div>
+
+      <div class="gallery-row gallery-row-two">
+        <div class="photo-card">
+          <img src="assets/final.png" alt="Into Forever" class="gallery-img"/>
+          <p class="photo-label">🌿 Into Forever</p>
+        </div>
+        <div class="photo-card">
+          <img src="assets/scene_wedding2.png" alt="Pure Joy" class="gallery-img"/>
+          <p class="photo-label">✨ Pure Joy</p>
+        </div>
+      </div>
+
+      <div class="gallery-deco-bar">
+        <img src="assets/deco_ghost.gif" class="gallery-deco-gif" alt="">
+        <span class="gallery-label">♡ Every Day With You ♡</span>
+        <img src="assets/deco_bear.gif"  class="gallery-deco-gif" alt="">
+      </div>
+
+      <div class="gallery-row gallery-row-two">
+        <div class="photo-card photo-card-tall">
+          <img src="assets/scene_kitchen.png" alt="Kitchen" class="gallery-img"/>
+          <p class="photo-label">🍳 Home Together</p>
+        </div>
+        <div class="photo-card photo-card-tall">
+          <img src="assets/scene_bedroom.png" alt="Bedroom" class="gallery-img"/>
+          <p class="photo-label">🌙 Sweet Dreams</p>
+        </div>
+      </div>
+
+      <div class="gallery-row gallery-row-hero">
+        <div class="photo-card photo-card-hero">
+          <img src="assets/scene_roblox.png" alt="Roblox" class="gallery-img"/>
+          <p class="photo-label">🎮 u_u Gaming Together</p>
+        </div>
+      </div>
+
+      <div class="gallery-row gallery-row-hero">
+        <div class="photo-card photo-card-hero photo-card-snap">
+          <img src="assets/scene_snap.png" alt="Us" class="gallery-img snap-img"/>
+          <p class="photo-label">🐾 Bad (feat. us) 🐾</p>
+        </div>
+      </div>
+
+      <!-- Quote card -->
+      <div class="gallery-row gallery-row-hero">
+        <div class="quote-card">
+          <div class="quote-deco-top">
+            <img src="assets/deco_mymelody.gif" class="quote-deco-gif" alt="">
+            <img src="assets/deco_ghost.gif"    class="quote-deco-gif" alt="">
+          </div>
+          <p class="quote-text">
+            1 year<br>
+            365 days<br>
+            8,760 hours<br>
+            525,600 minutes<br>
+            31,536,000 seconds<br>
+            2 birthdays<br>
+            1 valentine's day<br><br>
+            uncountable "i love you"s<br>
+            and hopefully a lifetime more
+          </p>
+          <div class="quote-deco-top">
+            <img src="assets/deco_bear.gif"   class="quote-deco-gif" alt="">
+            <img src="assets/deco_kuromi.gif" class="quote-deco-gif" alt="">
+          </div>
+        </div>
+      </div>
+
+      <!-- Scratch card QR — hidden until constellation heart is complete -->
+      <div id="qr-unlock-wrap" class="qr-unlock-wrap hidden">
+      <div class="gallery-row gallery-row-hero">
+        <div class="qr-card">
+          <p class="qr-label">💌 scratch to reveal your surprise~</p>
+          <p class="qr-scratch-hint">(ᵕ◡ᵕ)♡ scratch away the tiles!</p>
+          <div class="scratch-wrap" id="scratch-wrap">
+            <img src="assets/qr_custom.png" class="qr-underneath" alt="QR Code"/>
+            <div class="tile-grid" id="tile-grid">
+              <div class="scratch-tile">🌸</div><div class="scratch-tile">♡</div><div class="scratch-tile">✦</div><div class="scratch-tile">✧</div><div class="scratch-tile">💕</div><div class="scratch-tile">🌸</div>
+              <div class="scratch-tile">♡</div><div class="scratch-tile">✦</div><div class="scratch-tile">✧</div><div class="scratch-tile">💕</div><div class="scratch-tile">🌸</div><div class="scratch-tile">♡</div>
+              <div class="scratch-tile">✦</div><div class="scratch-tile">✧</div><div class="scratch-tile">💕</div><div class="scratch-tile">🌸</div><div class="scratch-tile">♡</div><div class="scratch-tile">✦</div>
+              <div class="scratch-tile">✧</div><div class="scratch-tile">💕</div><div class="scratch-tile">🌸</div><div class="scratch-tile">♡</div><div class="scratch-tile">✦</div><div class="scratch-tile">✧</div>
+              <div class="scratch-tile">💕</div><div class="scratch-tile">🌸</div><div class="scratch-tile">♡</div><div class="scratch-tile">✦</div><div class="scratch-tile">✧</div><div class="scratch-tile">💕</div>
+              <div class="scratch-tile">🌸</div><div class="scratch-tile">♡</div><div class="scratch-tile">✦</div><div class="scratch-tile">✧</div><div class="scratch-tile">💕</div><div class="scratch-tile">🌸</div>
+            </div>
+          </div>
+          <p class="qr-caption">🐾 a little something just for you 🐾</p>
+        </div>
+      </div>
+      </div><!-- end qr-unlock-wrap -->
+
+      <div class="gallery-deco-bar">
+        <img src="assets/deco_hellokitty.gif" class="gallery-deco-gif" alt="">
+        <span class="gallery-label">˚₊‧꩜ ˚ ₊‧꩜ ˚</span>
+        <img src="assets/deco_kuromi.gif"     class="gallery-deco-gif" alt="">
+      </div>
+
+      <!-- Wish Tree — unlocked by hearts quest -->
+      <div id="wish-tree-section" class="wish-tree-section hidden">
+        <div class="wish-tree-container">
+          <div class="wish-tree-title">🌸 The Wish Tree 🌸</div>
+          <div class="wish-tree-subtitle">every wish becomes a star</div>
+          <div class="wish-tree-img-wrap">
+            <!-- The pixel art tree image fills the whole area -->
+            <img src="assets/wish_tree.png" class="wish-tree-img" alt="Wish Tree"/>
+            <!-- Stars and constellation live in the SKY portion (top 55% of image) -->
+            <div id="wish-sky" class="wish-sky">
+              <svg id="wish-constellation-svg" class="wish-constellation-svg"></svg>
+              <div id="wish-stars" class="wish-stars"></div>
+            </div>
+            <!-- Fireflies overlay -->
+            <div class="firefly-layer" id="firefly-layer"></div>
+          </div>
+          <div class="wish-input-wrap">
+            <input type="text" id="wish-input" class="wish-input" placeholder="Make a wish, puppy ♡" maxlength="80"/>
+            <button id="wish-btn" class="pixel-btn wish-btn">✨ Send Wish ✨</button>
+          </div>
+          <div id="wish-msg" class="wish-msg hidden">Your wish has been placed among the stars ♡</div>
+        </div>
+      </div>
+
+    </div><!-- end gallery-wrap -->
+
+    <div class="ending-buttons hidden" id="ending-buttons">
+      <div style="display:flex;align-items:center;gap:12px;justify-content:center;">
+        <button id="open-letter-btn" class="pixel-btn letter-btn">💌 Open My Letter</button>
+        <div class="hidden-heart" data-heart="5"></div>
+      </div>
+    </div>
+
+    <button id="done-btn" class="pixel-btn done-btn hidden">Done ♡</button>
+
+  </div><!-- end ending-content -->
+</div><!-- end ending-screen -->
+
+<!-- ========== SECRET OVERLAY ========== -->
+<div id="secret-overlay" class="secret-overlay hidden">
+  <div id="secret-heart" class="secret-heart">💗</div>
+</div>
+
+<!-- ========== HEARTS HUD ========== -->
+<div id="hearts-hud" class="hearts-hud hidden">♡ Hearts Found: <span id="hearts-count">0</span>/5</div>
+
+<!-- ========== HEARTS FOUND POPUP ========== -->
+<div id="hearts-popup" class="hearts-popup hidden">
+  <div class="hearts-popup-inner">
+    <div class="hearts-popup-sparkles" id="hp-sparkles"></div>
+    <div class="hearts-popup-title">♡ Secret Discovered ♡</div>
+    <div class="hearts-popup-text">You found every hidden heart...<br>Something special awaits you...</div>
+    <button id="hearts-popup-close" class="pixel-btn">I'm ready ♡</button>
+  </div>
+</div>
+
+<!-- ========== MEMORY PETAL POPUP ========== -->
+<div id="petal-popup" class="petal-popup hidden">
+  <div class="petal-popup-inner">
+    <div class="petal-popup-title">🌸 Remember when...</div>
+    <div id="petal-popup-text" class="petal-popup-text"></div>
+    <button id="petal-popup-close" class="pixel-btn" style="font-size:8px;padding:8px 14px;">Close ♡</button>
+  </div>
+</div>
+
+<!-- ==================== LETTER OVERLAY ==================== -->
+<div id="letter-overlay" class="letter-overlay hidden">
+  <div class="letter-paper">
+    <div class="letter-deco-row">
+      <img src="assets/deco_mymelody.gif" class="letter-deco-gif" alt="">
+      <div class="letter-header">
+        <span class="letter-seal">💌</span>
+        <h2 class="letter-title">For My Sweet Puppy</h2>
+        <span class="letter-seal">💌</span>
+      </div>
+      <img src="assets/deco_kuromi.gif" class="letter-deco-gif" alt="">
+    </div>
+    <p class="letter-kaomoji">(ˊ˘ˋ*)♡ &nbsp; ♡(ˊ˘ˋ*)</p>
+    <div class="letter-divider">— ♥ —</div>
+    <pre id="letter-text" class="letter-text"></pre>
+    <div class="letter-divider">— ♥ —</div>
+    <button id="letter-close" class="pixel-btn letter-close-btn">Close ✕</button>
+  </div>
+</div>
+
+<!-- ========== BACKGROUND MUSIC ========== -->
+<audio id="bgm" loop preload="auto">
+  <source src="assets/bgm.mp3" type="audio/mpeg"/>
+</audio>
+
+<!-- ========== VOLUME SLIDER ========== -->
+<div id="vol-ctrl" class="vol-ctrl">
+  <span class="vol-icon" id="vol-icon">🔊</span>
+  <input type="range" id="vol-slider" class="vol-slider" min="0" max="100" value="25"/>
+</div>
+
+<script src="vn_engine.js"></script>
+<script src="script.js"></script>
+</body>
+</html>
